@@ -1,0 +1,33 @@
+{% extends layout %}
+
+{% block title %}Ошибка {{ code }}{% endblock %}
+
+{% block content %}
+    <section class="testimonials section">
+        <div class="section-inner">
+            <div class="content">
+                <div class="item">
+                    <div class="row">
+                        <div class="col-xs-2 text-center">
+                            <span class="fa fa-exclamation-triangle fa-4x text-danger outer-top-30"></span>
+                        </div>
+                        <div class="col-xs-10">
+                            <h1>Ошибка {{ code }}</h1>
+                            {% if app.debug %}
+                                <div class="alert alert-danger">
+                                    {{ error.getMessage() }} in {{ error.getFile() }} line: {{ error.getLine() }}
+                                </div>
+                                <div class="alert alert-info">
+                                    {{ error.getTraceAsString() }}
+                                </div>
+                            {% else %}
+                                <p>Очень не хотелось бы вас расстраивать, но что-то пошло не так.</p>
+                                <p>Пожалуйста, перейдите на <a href="{{ path('homepage') }}">главную страницу</a> сайта, там точно есть полезная для вас информация.</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

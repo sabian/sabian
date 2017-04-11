@@ -1,0 +1,12 @@
+<aside class="blog aside section">
+    <div class="section-inner">
+        <h2 class="heading">Последние записи в блоге</h2>
+        <div id="rss-feeds" class="content">
+            <ul>
+                {% for item in feedData.channel.item %}
+                    <li><a href="{{ item.link }}">{{ item.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</aside>

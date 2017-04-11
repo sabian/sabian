@@ -1,0 +1,30 @@
+{% extends layout %}
+
+{% block title %}Портфолио{% endblock %}
+
+{% block content %}
+    <h1 class="heading">Портфолио</h1>
+    {% for item in items %}
+        <section class="section">
+            <div class="section-inner">
+                <div class="content">
+                    <h3 class="title"><a href="{{ path('portfolio.item', {'id': item.id}) }}">{{ item.title }}</a></h3>
+                    {% if item.short_description %}
+                        <p class="summary">{{ item.short_description }}</p>
+                    {% endif %}
+                    {% if item.cms %}
+                        <p class="summary">Сделано на <span class="label label-primary">{{ item.cms }}</span></p>
+                    {% endif %}
+                    <div class="featured-image">
+                    <a href="{{ path('portfolio.item', {'id': item.id}) }}" title="{{ item.title }}">
+                        <img
+                            class="img-responsive project-image"
+                            src="{{ app.asset_path }}/images/projects/{{ item.image }}_big.png"
+                            alt="{{ item.title }}"/>
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endfor %}
+{% endblock %}

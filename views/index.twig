@@ -1,0 +1,115 @@
+{% extends layout %}
+
+{% block title %}Веб-программист Олег Филимонов{% endblock %}
+
+{% block content %}
+    <section class="about section">
+        <div class="section-inner">
+            <h2 class="heading">Нужен PHP-программист? Вы обратились по адресу.</h2>
+            <div class="content">
+                <p>Программирую под CMS Юпи! на Yii framework: разработаю для вас интернет-магазин любой сложности и другие проекты на фреймворке Yii (сайты с нуля под задачи вашего бизнеса, разработка систем учета и другое).</p>
+                <p>Посмотрите, какие услуги вы можете заказать уже сейчас:</p>
+                <ul>
+                    <li>полноценная поддержка проектов, созданных на CMS Юпи! и фреймворке Yii;</li>
+                    <li>написание плагинов для CMS Юпи!;</li>
+                    <li>создание тем оформления для CMS Юпи!;</li>
+                    <li>изменение функционала сайта и исправление ошибок;</li>
+                    <li>настройка хостинга и перенос сайта.</li>
+                </ul>
+                <p>Гарантирую вам четкое понимание задач, соблюдение сроков, корректное деловое общение и порядочность.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="latest section">
+        <div class="section-inner">
+            <h2 class="heading">Последние проекты</h2>
+            <div class="content">
+                <div class="item featured text-center">
+                    <h3 class="title"><a href="{{ path('portfolio.item', {'id': lastItem.id}) }}">{{ lastItem.title }}</a></h3>
+                    {% if lastItem.short_description %}
+                        <p class="summary">{{ lastItem.short_description }}</p>
+                    {% endif %}
+                    <div class="featured-image">
+                        <a href="/portfolio/{{ lastItem.id }}">
+                            <img class="img-responsive project-image" src="{{ app.asset_path }}/images/projects/{{ lastItem.image }}_big.png" alt="{{ lastItem.title }}" />
+                        </a>
+                    </div>
+
+                    <div class="desc text-left">
+                        {{ lastItem.description | raw }}
+                    </div>
+                    <a class="btn btn-cta-secondary" href="{{ path('portfolio') }}">
+                        <i class="fa fa-briefcase"></i> Посмотреть все работы
+                    </a>
+                </div>
+                <hr class="divider" />
+                {% for item in previousItems %}
+                    <div class="item row">
+                        <a class="col-md-4 col-sm-4 col-xs-12" href="/portfolio/{{ item.id }}">
+                            <img class="img-responsive project-image" src="{{ app.asset_path }}/images/projects/{{ item.image }}_small.png" alt="project name" />
+                        </a>
+                        <div class="desc col-md-8 col-sm-8 col-xs-12">
+                            <h3 class="title">
+                                <a href="{{ path('portfolio.item', {'id': item.id}) }}">
+                                    {{ item.title }}
+                                </a>
+                            </h3>
+                            {{ item.description | raw }}
+                            <p>
+                                <a class="more-link" href="{{ path('portfolio.item', {'id': item.id}) }}">
+                                    <i class="fa fa-sign-in"></i> Подробнее
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="projects section">
+        <div class="section-inner">
+            <h2 class="heading">Другие проекты</h2>
+            <div class="content">
+                <div class="item">
+                    <h3 class="title"><a href="http://yupe.ru">CMS Юпи!</a> <span class="label label-theme">Open Source</span></h3>
+                    <p class="summary">С начала 2015 года принимаю активное участие в развитии CMS. В рамках этого описания всего не перечислить, т.к. был выполнен большой объем работ
+                        по исправлению ошибок, созданию нового функционала и рефакторингу. Подробней познакомиться с проектом можно в репозитории на GitHub</p>
+                    <p><a class="more-link" href="https://github.com/yupe/yupe" target="_blank"><i class="fa fa-external-link"></i> Код на GitHub</a></p>
+                </div>
+                <div class="item">
+                    <h3 class="title"><a href="https://github.com/sabian/yupe-payler">Модуль Payler для CMS Юпи!</a> <span class="label label-theme">Open Source</span></h3>
+                    <p class="summary">Модуль оплаты заказа банковскими картами через Payler для CMS Yupe!</p>
+                    <p><a class="more-link" href="https://github.com/sabian/yupe-payler" target="_blank"><i class="fa fa-external-link"></i> Код на GitHub</a></p>
+                </div>
+                <div class="item">
+                    <h3 class="title"><a href="http://docs.yupe.ru/">Документация Юпи! 1.х</a> <span class="label label-theme">Open Source</span></h3>
+                    <p class="summary">Написал часть обучающей документации по установке, настройке, обновлению и написанию собственного модуля для CMS Юпи! (Yii framework)</p>
+                    <p><a class="more-link" href="https://github.com/amyLabs/yupe-guides" target="_blank"><i class="fa fa-external-link"></i> Код на GitHub</a></p>
+                </div>
+                <div class="item">
+                    <h3 class="title"><a href="http://itmages.ru/" rel="nofollow">ITmages - бесплатный хостинг картинок</a></h3>
+                    <p class="summary">
+                        Участвовал в проекте с октября 2013 по май 2014. Мною были сделаны: загрузка картинок по URL, счетчик просмотров изображений,
+                        всплывающая панель с информацией по изображению, функциональность по уменьшению траффика (Большие изображения, при достижении порогового значения просмотров,
+                        сжимаются и помещаются в отдельные папки. Пользователю показываются уменьшенные версии с предложением посмотреть полный вариант), написаны приемочные и юнит-тесты.
+                    </p>
+                    <p class="summary">
+                        В рамках этого проекта работал с Yii framework, Redis, MySQL, Memcached, Socket.io, Nginx, Guzzle, Codeception, JQuery. <br>
+                        Код проекта в приватном репозитории на GitHub.
+                    </p>
+                </div>
+                <a class="btn btn-cta-secondary" href="https://github.com/sabian">Мой профиль на GitHub &nbsp;<i class="fa fa-chevron-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="github section">
+        <div class="section-inner">
+            <h2 class="heading">GitHub</h2>
+            {# Usage: http://caseyscarborough.com/projects/github-activity/ #}
+            <div id="ghfeed" class="ghfeed"></div>
+        </div>
+    </section>
+{% endblock %}

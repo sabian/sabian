@@ -1,0 +1,29 @@
+{% extends layout %}
+
+{% block title %}Контакты{% endblock %}
+
+{% block content %}
+    <section class="section">
+        <div class="section-inner">
+            <div class="content">
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2">
+                        <h1 class="heading">Контакты</h1>
+                        <p><b>Skype: </b><a href="skype:o_sabian?chat">o_sabian</a></p>
+                        <hr>
+                        {% for alert in app.session.flashbag.get('feedback-success') %}
+                            <div class="alert alert-success"><strong>{{ alert }}</strong></div>
+                        {% endfor %}
+
+                        {% for alert in app.session.flashbag.get('feedback-error') %}
+                            <div class="alert alert-danger"><strong>{{ alert }}</strong></div>
+                        {% endfor %}
+                        <form action="{{ path('contacts') }}" method="post" class="contact-form">
+                            {{ form_widget(form) }}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

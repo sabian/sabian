@@ -1,0 +1,21 @@
+{% extends layout %}
+
+{% block title %}Отзывы{% endblock %}
+
+{% block content %}
+    <h1 class="heading">Отзывы</h1>
+    {% for item in items %}
+        <section class="testimonials section">
+            <div class="section-inner">
+                <div class="content">
+                    <div class="item">
+                        <blockquote class="quote">
+                            <p><i class="fa fa-quote-left"></i>{{ item.text }}</p>
+                        </blockquote>
+                        <p class="source"><span class="name">{{ item.name }}</span><br /><span class="title">{{ item.company }}</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endfor %}
+{% endblock %}

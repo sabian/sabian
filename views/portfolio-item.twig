@@ -1,0 +1,39 @@
+{% extends layout %}
+
+{% block title %}portfolio item{% endblock %}
+
+{% block content %}
+    <section class="latest section">
+        <div class="section-inner">
+            <div class="content">
+                <div class="item featured text-center">
+                    <h1 class="title">{{ item.title }}</h1>
+                    <p class="summary">{{ item.short_description }}</p>
+                    <div class="featured-image">
+                        <img
+                            class="img-responsive"
+                            src="{{ app.asset_path }}/images/projects/{{ item.image }}_big.png"
+                            alt="{{ item.title }}" />
+                    </div>
+                    <div class="desc text-left">
+                        <p>
+                        {% if item.link %}
+                            <b>Сайт</b>: <a href="{{ item.link }}">{{ item.link }}</a>
+                        {% endif %}
+
+                        {% if item.cms %}
+                            <br><b>Сделано на</b>: {{ item.cms }}
+                        {% endif %}
+                        </p>
+                        {{ item.description | raw}}
+                        <p>
+                            <a href="{{ path('portfolio') }}">
+                                <span class="fa fa-arrow-left"></span> Портфолио
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

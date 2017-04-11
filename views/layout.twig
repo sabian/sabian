@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Создание и поддержка проектов любой сложности на Yii framework. Гарантия качества и профессионализма.">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Cuprum:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ app.asset_path }}/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ app.asset_path }}/plugins/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="{{ app.asset_path }}/plugins/github-activity/dist/github-activity-0.1.1.min.css">
+    <link rel="stylesheet" href="{{ app.asset_path }}/plugins/github-activity/dist/octicons/octicons.min.css">
+
+    <link id="theme-style" rel="stylesheet" href="{{ app.asset_path }}/css/styles.css">
+
+    {# HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries #}
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<header class="header">
+    <div class="container">
+        <a href="{{ path('homepage') }}">
+            <img class="profile-image img-responsive pull-left" src="{{ app.asset_path }}/images/profile.png" alt="Олег Филимонов" />
+        </a>
+        <div class="profile-content pull-left">
+            <h1 class="name">Веб-программист Олег Филимонов</h1>
+            <h2 class="desc">Сайты работают на отлично!</h2>
+            <ul class="social list-inline">
+                <li><a href="https://github.com/sabian"><i class="fa fa-github-alt"></i></a></li>
+                <li><a href="skype:o_sabian?userinfo"><i class="fa fa-skype"></i></a></li>
+            </ul>
+        </div>
+
+        <a href="{{ path('contacts') }}" class="btn btn-success pull-right">
+            <i class="fa fa-envelope"></i> Связаться со мной
+        </a>
+    </div>
+</header>
+
+<div class="container sections-wrapper">
+    <div class="row">
+        <div class="primary col-md-8 col-sm-12 col-xs-12">
+            {% block content %}{% endblock %}
+        </div>
+        <div class="secondary col-md-4 col-sm-12 col-xs-12">
+            <aside class="skills aside section">
+                <div class="section-inner">
+                    <div class="content">
+                        <p>В той или иной мере доводилось работать с:</p>
+                        <div class="skillset">
+                            {% for skill in skills %}
+                                <span class="label label-primary">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <aside class="testimonials aside section">
+                <div class="section-inner">
+                    <h2 class="heading">Отзывы</h2>
+                    <div class="content">
+                        <div class="item">
+                            <blockquote class="quote">
+                                <p><i class="fa fa-quote-left"></i>{{ testimonial.text }}</p>
+                            </blockquote>
+                            <p class="source">
+                                <span class="name">{{ testimonial.name }}</span><br />
+                                <span class="title">{{ testimonial.company }}</span>
+                            </p>
+                        </div>
+                        <a href="{{ path('testimonials') }}" class="pull-right"><span class="fa fa-sign-in"></span> Все отзывы</a>
+                    </div>
+                </div>
+            </aside>
+
+            {{ RssWidget.show() | raw}}
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container text-center">
+        <small class="copyright">&copy; {{ 'now'|date('Y') }} Олег Филимонов</small>
+    </div>
+</footer>
+{% if app.request.host != 'sabian' %}
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript"> (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter36867820 = new Ya.Metrika({ id:36867820, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/36867820" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+{% endif %}
+
+<script type="text/javascript" src="{{ app.asset_path }}/plugins/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="{{ app.asset_path }}/plugins/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="{{ app.asset_path }}/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{{ app.asset_path }}/plugins/jquery-rss/dist/jquery.rss.min.js"></script>
+<script type="text/javascript" src="{{ app.asset_path }}/plugins/github-activity/dist/mustache/mustache.min.js"></script>
+<script type="text/javascript" src="{{ app.asset_path }}/plugins/github-activity/dist/github-activity-0.1.1.min.js"></script>
+<script type="text/javascript" src="{{ app.asset_path }}/js/main.js"></script>
+</body>
+</html>
